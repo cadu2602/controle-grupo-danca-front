@@ -1,4 +1,4 @@
-Projeto para controle de um grupo de danças, com o controle de mensalidade pagas no mês de cada integrante e valor em caixa do grupo
+# Projeto para controle de um grupo de danças, com o controle de mensalidade pagas no mês de cada integrante e valor em caixa do grupo
 
 Tecnologias usadas:
 - React
