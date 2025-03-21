@@ -1,0 +1,1 @@
+biome lint ./src --skip=style --skip=suspicious/noExtraNonNullAssertion
