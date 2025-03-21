@@ -1,4 +1,5 @@
 import { CalendarDays } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import CardContent from './card/CardContent';
 
@@ -8,18 +9,19 @@ interface Cards {
 }
 
 const CardMain = () => {
-	const title = 'Mensalidades por mês';
+	const { t } = useTranslation();
+	const title = t('mensalidadeMes');
 	const cards: Cards[] = [
 		{
-			title: 'Março',
+			title: t('meses.marco'),
 			subtitle: '8 de 10 mensalidades pagas',
 		},
 		{
-			title: 'Abril',
+			title: t('meses.abril'),
 			subtitle: '8 de 10 mensalidades pagas',
 		},
 		{
-			title: 'Maio',
+			title: t('meses.maio'),
 			subtitle: '8 de 10 mensalidades pagas',
 		},
 	];
