@@ -4,11 +4,9 @@ import CardMain from './components/CardMain';
 
 function App() {
 	return (
-		<div>
-			<header className="flex row-auto items-start justify-start mb-20">
-				<AppBar />
-			</header>
-			<div>
+		<div className="bg-white dark:bg-[#00205E] p-0 h-screen m-0">
+			<AppBar />
+			<div className="mt-20 px-3">
 				<CardMain />
 			</div>
 		</div>
