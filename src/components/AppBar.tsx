@@ -1,20 +1,21 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { FiMenu } from 'react-icons/fi';
 
 const AppBar = () => {
 	return (
-		<header className="bg-[#007AFF] w-full">
-			<div className="flex flex-row justify-between px-3 py-3">
-				<FiMenu className="items-center" color="white" size={20} />
-				<div className="w-15 h-0">
-					<img src="./logo.png" alt="logo" />
-				</div>
+		<div className="bg-[#00205E] dark:bg-[#007AFF] w-screen">
+			<div className="flex items-center justify-between p-2">
+				<FiMenu color="white" size={20} />
+				<img
+					src="./logo.png"
+					alt="logo"
+					className="items-center justify-center w-10 h-10"
+				/>
 				<Avatar>
-					<AvatarImage />
 					<AvatarFallback>CN</AvatarFallback>
 				</Avatar>
 			</div>
-		</header>
+		</div>
 	);
 };
 
