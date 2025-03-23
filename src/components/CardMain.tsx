@@ -1,6 +1,8 @@
 import { CalendarDays } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+import { Separator } from '@/components/ui/separator';
+import { Link } from 'react-router-dom';
 import CardContent from './card/CardContent';
 
 interface Card {
@@ -10,6 +12,7 @@ interface Card {
 
 const CardMain = () => {
 	const { t } = useTranslation();
+
 	const cards: Card[] = [
 		{
 			title: t('meses.marco'),
@@ -26,7 +29,7 @@ const CardMain = () => {
 	];
 
 	return (
-		<CardContent className="px-3" title={t('mensalidadeMes')}>
+		<CardContent className="px-3 pb-1" title={t('mensalidadeMes')}>
 			{cards.map(card => {
 				return (
 					<CardContent key={card.title} className="text-start px-4">
@@ -40,6 +43,12 @@ const CardMain = () => {
 					</CardContent>
 				);
 			})}
+			<div>
+				<Separator className="m-0 p-0" />
+				<Link to="/mensalidades" className="text-[#007AFF] cursor-pointer">
+					{t('mostrarMeses')}
+				</Link>
+			</div>
 		</CardContent>
 	);
 };
