@@ -3,15 +3,14 @@ import { useTranslation } from 'react-i18next';
 
 import CardContent from './card/CardContent';
 
-interface Cards {
+interface Card {
 	title: string;
 	subtitle: string;
 }
 
 const CardMain = () => {
 	const { t } = useTranslation();
-	const title = t('mensalidadeMes');
-	const cards: Cards[] = [
+	const cards: Card[] = [
 		{
 			title: t('meses.marco'),
 			subtitle: '8 de 10 mensalidades pagas',
@@ -27,7 +26,7 @@ const CardMain = () => {
 	];
 
 	return (
-		<CardContent className="px-3" title={title}>
+		<CardContent className="px-3" title={t('mensalidadeMes')}>
 			{cards.map(card => {
 				return (
 					<CardContent key={card.title} className="text-start px-4">
