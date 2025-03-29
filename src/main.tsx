@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import './i18n';
-import CardMain from '@/components/CardMain.tsx';
-import MonthlyFees from '@/components/MonthlyFees.tsx';
+import Home from '@/pages/Home.tsx';
+import MonthlyFees from '@/pages/MonthlyFees.tsx';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -14,11 +14,11 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <CardMain />,
+				element: <Home />,
 			},
 			{
 				path: 'mensalidades',
-				// element: <MonthlyFees />,
+				element: <MonthlyFees />,
 			},
 		],
 	},

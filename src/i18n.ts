@@ -17,14 +17,27 @@ i18n
 			br: {
 				translation: {
 					meses: {
+						janeiro: 'Janeiro',
+						fevereiro: 'Fevereiro',
 						marco: 'Março',
 						abril: 'Abril',
 						maio: 'Maio',
+						junho: 'Junho',
+						julho: 'Julho',
+						agosto: 'Agosto',
+						setembro: 'Setembro',
+						outubro: 'Outubro',
+						novembro: 'Novembro',
+						dezembro: 'Dezembro',
 					},
 					mensalidadeMes: 'Mensalidades por mês',
 					sair: 'Sair',
 					alterarTema: 'Alterar tema',
 					mostrarMeses: 'Mostrar todos os meses',
+					integrantes: {
+						mostrar: 'Mostrar integrantes',
+						ocultar: 'Ocultar integrantes',
+					},
 				},
 			},
 		},

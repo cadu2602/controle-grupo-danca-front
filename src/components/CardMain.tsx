@@ -1,7 +1,7 @@
-import { CalendarDays, ChevronDown, ChevronRight } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Separator } from '@/components/ui/separator';
 
@@ -10,67 +10,31 @@ import {
 	columns,
 } from '@/components/mensalidades/Columns';
 import { DataTable } from '@/components/mensalidades/DataTable';
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from '@/components/ui/accordion';
 import CardContent from './card/CardContent';
 
-interface Card {
+export interface Card {
 	title: string;
 	subtitle: string;
 	monthlyFees: MonthlyFeesData[];
 }
 
-const CardMain = () => {
+interface CardMainProps {
+	cards: Card[];
+}
+
+const CardMain = ({ cards }: CardMainProps) => {
 	const { t } = useTranslation();
-	const [showTable, setShowTable] = useState({ month: '', show: false });
+	const location = useLocation();
+	const [showTable, setShowTable] = useState('');
 
-	const cards: Card[] = [
-		{
-			title: t('meses.marco'),
-			subtitle: '8 de 10 mensalidades pagas',
-			monthlyFees: [
-				{
-					name: 'Carlos',
-					paid: true,
-				},
-				{
-					name: 'Luiz',
-					paid: true,
-				},
-			],
-		},
-		{
-			title: t('meses.abril'),
-			subtitle: '8 de 10 mensalidades pagas',
-			monthlyFees: [
-				{
-					name: 'Ronan',
-					paid: true,
-				},
-				{
-					name: 'Fernando',
-					paid: false,
-				},
-			],
-		},
-		{
-			title: t('meses.maio'),
-			subtitle: '8 de 10 mensalidades pagas',
-			monthlyFees: [
-				{
-					name: 'João',
-					paid: false,
-				},
-				{
-					name: 'Henrique',
-					paid: false,
-				},
-			],
-		},
-	];
-
-	function handleShowTable(month: string) {
-		setShowTable(prev =>
-			month === prev.month ? { month: '', show: false } : { month, show: true },
-		);
+	function handleShowTable(value: string) {
+		setShowTable(value);
 	}
 
 	return (
@@ -85,33 +49,32 @@ const CardMain = () => {
 							</div>
 							<span className="ml-1">{card.subtitle}</span>
 						</div>
-						{showTable.show && showTable.month === card.title ? (
-							<div>
-								<div
-									onClick={() => handleShowTable(card.title)}
-									className="flex cursor-pointer underline text-[#007AFF]">
-									<ChevronDown />
-									<span>Ocultar integrantes</span>
-								</div>
-								<DataTable columns={columns} data={card.monthlyFees} />
-							</div>
-						) : (
-							<div
-								onClick={() => handleShowTable(card.title)}
-								className="flex cursor-pointer underline text-[#007AFF]">
-								<ChevronRight />
-								<span>Mostrar integrantes</span>
-							</div>
-						)}
+						<Accordion
+							type="single"
+							collapsible
+							onValueChange={handleShowTable}>
+							<AccordionItem value={card.title}>
+								<AccordionTrigger className="flex cursor-pointer  dark:bg-[#00205E]! text-[#007AFF] bg-white!">
+									{showTable === card.title
+										? t('integrantes.ocultar')
+										: t('integrantes.mostrar')}
+								</AccordionTrigger>
+								<AccordionContent>
+									<DataTable columns={columns} data={card.monthlyFees} />
+								</AccordionContent>
+							</AccordionItem>
+						</Accordion>
 					</CardContent>
 				);
 			})}
-			<div>
-				<Separator className="m-0 p-0" />
-				<Link to="/mensalidades" className="text-[#007AFF] cursor-pointer">
-					{t('mostrarMeses')}
-				</Link>
-			</div>
+			{location.pathname !== '/mensalidades' && (
+				<div className="text-center">
+					<Separator className="m-0 p-0" />
+					<Link to="/mensalidades" className="text-[#007AFF] cursor-pointer ">
+						{t('mostrarMeses')}
+					</Link>
+				</div>
+			)}
 		</CardContent>
 	);
 };
